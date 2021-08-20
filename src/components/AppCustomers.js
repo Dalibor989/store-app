@@ -1,18 +1,18 @@
 import React, {useState} from "react";
+import { Link } from "react-router-dom";
 
 function AppCustomers() {
 
   const [newCustomer, setNewCustomer] = useState({
-    index: '',
     name: '',
     surname: '',
     age: '',
   })
 
   const [customers, setCustomer] = useState([
-    {index: 0, name: 'Pero', surname: 'Peterson', age: 20},
-    {index: 1, name: 'Milan', surname: 'Milanovic', age: 35},
-    {index: 2, name: 'Jovana', surname: 'Jovanovic', age: 28},
+    {name: 'Pero', surname: 'Peterson', age: 20},
+    {name: 'Milan', surname: 'Milanovic', age: 35},
+    {name: 'Jovana', surname: 'Jovanovic', age: 28},
   ])
 
   const removeCustomer = (customerIndex) => {
@@ -55,7 +55,10 @@ function AppCustomers() {
     <div>
       <ul>
         {customers.map((customer, index) => (
-          <li key={index}>{customer.name} {customer.surname}<button onClick={() => removeCustomer(index)}>Remove Customer</button></li>
+          <li key={index}>{customer.name} {customer.surname}
+          <button onClick={() => removeCustomer(index)}>Remove Customer</button>
+          <Link to="/latest-purchases"></Link>
+          </li>
         ))}
       </ul>
       
