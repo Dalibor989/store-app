@@ -1,5 +1,6 @@
 import React, {useState} from "react";
 import { Link } from "react-router-dom";
+import CustomerService from "../services/CustomerService"
 
 function AppCustomers() {
 
@@ -9,20 +10,23 @@ function AppCustomers() {
     age: '',
   })
 
-  const [customers, setCustomer] = useState([
-    {name: 'Pero', surname: 'Peterson', age: 20},
-    {name: 'Milan', surname: 'Milanovic', age: 35},
-    {name: 'Jovana', surname: 'Jovanovic', age: 28},
-  ])
+  const [customers, setCustomer] = useState(CustomerService.getAll())
 
-  const removeCustomer = (customerIndex) => {
-    setCustomer(customers.filter((animals, index) => index !== customerIndex))
+  const removeCustomer = (id) => {
+    const isDeleted = CustomerService.remove(id);
+
+    if (isDeleted) {
+      setCustomer(customers.filter((customers) => customers.id !== id));
+    }
+  
   }
 
   const addCustomer = (e) => {
     e.preventDefault();
 
-    setCustomer([...customers, newCustomer]);
+    const newCus = CustomerService.create(newCustomer);
+    
+    setCustomer([...customers, newCus]);
     setNewCustomer({
       name: '',
       surname: '',
@@ -54,9 +58,9 @@ function AppCustomers() {
   return (
     <div>
       <ul>
-        {customers.map((customer, index) => (
-          <li key={index}>{customer.name} {customer.surname}
-          <button onClick={() => removeCustomer(index)}>Remove Customer</button>
+        {customers.map((customer) => (
+          <li key={customer.id}>{customer.id} {customer.name} {customer.surname}
+          <button onClick={() => removeCustomer(customer.id)}>Remove Customer</button>
           <Link to="/latest-purchases"></Link>
           </li>
         ))}
