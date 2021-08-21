@@ -3,9 +3,27 @@ class CustomerService{
         this.nextId = 4;
 
         this.customers = [
-            {id: 1, name: 'Pero', surname: 'Peterson', age: 20},
-            {id: 2, name: 'Milan', surname: 'Milanovic', age: 35},
-            {id: 3, name: 'Jovana', surname: 'Jovanovic', age: 28},
+            {
+                id: 1, 
+                name: 'Pero', 
+                surname: 'Peterson', 
+                age: 20, 
+                products: [{id: 1, name: 'logitech g205'}]
+            },
+            {
+                id: 2, 
+                name: 'Milan', 
+                surname: 'Milanovic', 
+                age: 35, 
+                products: [{id: 2, name: 'Dell 24inch Monitor'}]
+            },
+            {
+                id: 3, 
+                name: 'Jovana', 
+                surname: 'Jovanovic', 
+                age: 28, 
+                products: [{id: 3, name: 'Cooler Master 500D'}]
+            },
         ]
     }
 
@@ -23,6 +41,10 @@ class CustomerService{
 
     getAll() {
         return [...this.customers];
+    }
+
+    get(id) {
+        return this.customers.find((cus) => cus.id === Number(id))
     }
 }
 

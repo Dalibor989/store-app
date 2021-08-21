@@ -1,5 +1,4 @@
 import { BrowserRouter as Router, Link, Route, Switch } from 'react-router-dom';
-import logo from './logo.svg';
 import './styles/App.css';
 import AppCustomers from './pages/AppCustomers';
 import AppProducts from './pages/AppProducts';
@@ -7,8 +6,8 @@ import LatestPurchases from './pages/LatestPurchases';
 
 function App() {
   return (
-    <Router>
-      <div className="App">
+    <div className="App">
+      <Router>
         <nav>
           <ul>
             <li><Link to="/">Home</Link></li>
@@ -17,18 +16,18 @@ function App() {
           </ul>
         </nav>
         <Switch>
-          <Route path="/customers">
+          <Route exact path="/customers">
             <AppCustomers />
           </Route>
-          <Route path="/products">
+          <Route exact path="/products">
             <AppProducts />
           </Route>
-          <Route path="/latest-purchases">
+          <Route path="/customers/:id">
             <LatestPurchases />
           </Route>
         </Switch>
-      </div>
-    </Router>
+      </Router>
+    </div>
   );
 }
 

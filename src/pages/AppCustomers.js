@@ -59,9 +59,11 @@ function AppCustomers() {
     <div>
       <ul>
         {customers.map((customer) => (
-          <li key={customer.id}>{customer.id} {customer.name} {customer.surname}
+          <li key={customer.id}>
+          <span>{customer.name}</span> 
+          <span>{customer.surname}</span>
+          <Link to={`/customers/${customer.id}`}>Latest Purchases</Link>
           <button onClick={() => removeCustomer(customer.id)}>Remove Customer</button>
-          <Link to="/latest-purchases"></Link>
           </li>
         ))}
       </ul>
