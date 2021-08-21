@@ -1,17 +1,18 @@
 import React, {useState} from "react";
 import { Link } from "react-router-dom";
+import ProductService from "../services/ProductService";
 
 function AppProducts() {
-  const [products, setProduct] = useState([
-    {productName: 'Speakers', quantity: 20},
-    {productName: 'Keyboard', quantity: 30},
-  ])
+  const [products, setProduct] = useState(ProductService.getAll())
 
   return (
     <div>
       <ul>
-        {products.map((product, index) => (
-          <li key={index}>{product.productName}</li>
+        {products.map((product) => (
+          <li key={product.id}>
+            Product: <span>{product.name}</span><br /> 
+            In stock: <span>{product.quantity}</span>
+          </li>
         ))}
       </ul>
     </div>
