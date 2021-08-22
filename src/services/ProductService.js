@@ -24,6 +24,30 @@ class ProductService {
   getAll() {
     return [...this.products];
   }
+
+  search(name) {
+    return this.products.filter((product) => product.name === name)
+  }
+
+  increment(id) {
+    const index = this.products.findIndex((product) => product.id === id)
+
+    if(index !== -1) {
+      this.products[index].quantity++;
+    }
+
+    return this.products[index].quantity;
+  }
+
+  decrement(id) {
+    const index = this.products.findIndex((product) => product.id === id)
+
+    if(index !== -1 && this.products[index].quantity > 0) {
+      this.products[index].quantity--;
+    }
+
+    return this.products[index].quantity;
+  }
 }
 
 export default new ProductService();
