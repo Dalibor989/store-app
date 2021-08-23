@@ -50,7 +50,7 @@ class ProductService {
   }
 
   get(id) {
-    return this.products.find((prod) => prod.id === Number(id))
+    return this.products.find((product) => product.id === Number(id))
 }
 }
 

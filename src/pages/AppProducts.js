@@ -4,7 +4,11 @@ import ProductService from "../services/ProductService";
 import SingleProduct from "../components/SingleProduct";
 
 function AppProducts() {
+  const [search, setSearch] = useState('')
   const [products, setProduct] = useState(ProductService.getAll())
+
+  const filteredProducts = products.filter(prod => prod.name.toLowerCase().startsWith(search.toLowerCase()))
+
 
   const setNewQuantity = (id, newQuantity) => {
     const index = products.findIndex((product) =>  product.id === id)
@@ -31,11 +35,11 @@ function AppProducts() {
   return (
     <div>
       <form onSubmit={searchName}>
-        <input type="text" placeholder="Search..." />
+        <input type="text" placeholder="Search..." onChange={({target}) => setSearch(target.value)}/>
         <button>Search</button>
       </form>
       <div>
-        {products.map((product) => (
+        {filteredProducts.map((product) => (
           <SingleProduct
             key={product.id}
             id={product.id}
