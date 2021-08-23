@@ -3,6 +3,7 @@ import './styles/App.css';
 import AppCustomers from './pages/AppCustomers';
 import AppProducts from './pages/AppProducts';
 import LatestPurchases from './pages/LatestPurchases';
+import BuyProducts from './pages/BuyProducts';
 
 function App() {
   return (
@@ -24,6 +25,9 @@ function App() {
           </Route>
           <Route path="/customers/:id">
             <LatestPurchases />
+          </Route>
+          <Route path="/products/:id">
+            <BuyProducts />
           </Route>
         </Switch>
       </Router>

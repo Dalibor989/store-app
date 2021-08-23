@@ -48,6 +48,10 @@ class ProductService {
 
     return this.products[index].quantity;
   }
+
+  get(id) {
+    return this.products.find((prod) => prod.id === Number(id))
+}
 }
 
 export default new ProductService();
